@@ -5,12 +5,13 @@
   "main": "lib/api.js",
   "dependencies": {
     "body-parser": "^1.16.0",
+    "commander": "^2.15.1",
     "csv-parse": "^2.2.0",
     "express": "^4.14.1"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "cd ./lib && node api.js"
+    "start": "node main.js -p PORT -w NBWORKERS "
   },
   "repository": {
     "type": "git",
