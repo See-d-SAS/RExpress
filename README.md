@@ -187,8 +187,7 @@ app.post('/R', text_parser, function (request, response) {
 ```
 ### Custom routes
 
-*POST http://ip:port/R/%fonction%
-
+*POST http://ip:port/R/%function%*
 
 ```javascript
 rexpress.router.post('/R/route_name', function (request, response, next) {
