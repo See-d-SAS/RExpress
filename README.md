@@ -22,19 +22,6 @@ npm run start -- -p *number of port you want* -w *number of workers you want*
 
 # CLIENT
 
-# -- execute a script given in body
-curl -X POST -d 'a <- "Hello World"\n a \n' "http://127.0.0.1/R/"
-> [1] "Hello World"
-
-# -- call 'qnorm' built-in function (value at the p percentile of normal distribution)
-curl -X POST -H "Content-Type: multipart/form-data; " -F "p=.42" "http://127.0.0.1/R/qnorm"
-> qnorm(p=.42)
-[1] -0.2018935
-
-# -- call a custom function (defined in /R/awesome.R)
-curl -X POST -H "Content-Type: multipart/form-data; " -F "x=24" -F "y=42" "http://127.0.0.1/R/awesomefn"
-> awesomefn(x=24,y=42)
-[1] 2340
 ```
 
 Below an example in Postman, for a function returning several values.
