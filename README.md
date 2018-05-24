@@ -17,8 +17,18 @@ To improve reactivity and replicability, RExpress is :
 
 # -- assuming R is installed
 #    and your custom preload scripts are in /R folder
-npm start 	# will start with the default values
-npm run start -- -p *number of port you want* -w *number of workers you want*
+
+# start RExpress with default values (port #8080 and workers adapted to CPU)
+npm start 	
+
+# ... or with custom parameters
+
+# TCP port
+export PORT=4242	
+
+# number of R threads to spawn
+export NB_WORKERS=12
+npm run start -- -p ${PORT} -w ${NB_WORKERS}
 
 # CLIENT
 
