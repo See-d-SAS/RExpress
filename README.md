@@ -17,7 +17,8 @@ To improve reactivity and replicability, RExpress is :
 
 # -- assuming R is installed
 #    and your custom preload scripts are in /R folder
-node ./api.js
+npm start 	# will start with the default values
+npm run start -- -p *number of port you want* -w *number of workers you want*
 
 # CLIENT
 
@@ -38,7 +39,7 @@ curl -X POST -H "Content-Type: multipart/form-data; " -F "x=24" -F "y=42" "http:
 
 Below an example in Postman, for a function returning several values.
 
-![rnorm](./rnorm.png)
+![russia](./russia.png)
 
 
 ## Installation
@@ -50,9 +51,8 @@ cd RExpress
 
 npm install
 
-cd ./lib
-node ./api.js 	# nb_workers = 4 * nb_threads
-node ./api.js 4 # 4 workers
+npm start 	# will start with the default values
+npm run start -- -p *number of port you want* -w *number of workers you want*
 
 ```
 
@@ -70,7 +70,7 @@ Users actions are therefore restricted to this particular function scope.
 ```javascript
 // api.js
 // call a function w/ form-data (safe)
-.post('/R/:function', upload.array(), function (request, response) {
+app.post('/R/:function', function (request, response) {
 	// ...
 })
 ```
@@ -87,7 +87,7 @@ Testing purposes only, do not use in production.
 
 // execute the R program given in body
 // -- very unsafe but useful in testing purposes
-.post('/R', text_parser, function (request, response) {
+app.post('/R', text_parser, function (request, response) {
 	// ...
 })
 ```
@@ -106,6 +106,23 @@ To tweak this parameter, change the *nb parameter* at the pool creation in api.j
 ### Custom Scripts
 
 If the workers should have data or libraries preloaded, you can store them in .R files and save them in the /R folder.
+Then you can write the name of the function in main.js
+
+Example : 
+
+*POST http://127.0.0.1:8080/R/russia
+
+
+```javascript
+rexpress.router.post('/R/russia', function (request, response, next) {
+	// testing the parameters
+	
+	request.Rfunction = "cyrillize"  # the name of the .R file in the /R folder
+		next()
+	// ...
+})
+```
+
 
 ## Docker
 
