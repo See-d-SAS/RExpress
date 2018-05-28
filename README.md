@@ -92,10 +92,6 @@ curl -X POST -H "Content-Type: multipart/form-data " -F "n=100" "http://127.0.0.
  [91] -1.40142968 -1.08684676  0.30534441  0.78448051 -0.66503028 -0.04124425
  [97]  1.05464664 -0.51600263  0.27437444 -1.23600668
 
-	(-> script
-curl -X POST -d 'a <- "Hello World"\n a \n' "http://127.0.0.1/R/"
-> [1] "Hello World") à revoir
-
 	-> custom route
 curl -X POST -H "Content-Type: multipart/form-data " -F "text=texte" "http://127.0.0.1:8080/R/russia"
 > cyrillize(text="texte")
@@ -114,8 +110,6 @@ exports.allow_free_scripts = false
 	-> internal route
 curl -X POST -H "Content-Type: multipart/form-data " -F "n=100" "http://127.0.0.1:8080/R/rnorm"
 > Unkown Rfunction and not allowed to use internal call
-
-	(-> script) à revoir
 	
 	-> custom route
 curl -X POST -H "Content-Type: multipart/form-data " -F "text=texte" "http://127.0.0.1:8080/R/russia"
