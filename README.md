@@ -186,7 +186,7 @@ app.post('/R', text_parser, function (request, response) {
 ```javascript
 //main.js
 rexpress.router.post('/R/route_name', function (request, response, next) {
-	// ...testing the parameters
+	// ...testing parameters
 	
 	request.Rfunction = "function_name"
 		next()
