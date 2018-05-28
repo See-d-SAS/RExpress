@@ -184,6 +184,7 @@ app.post('/R', text_parser, function (request, response) {
 *POST http://ip:port/R/%function%*
 
 ```javascript
+//main.js
 rexpress.router.post('/R/route_name', function (request, response, next) {
 	// ...testing the parameters
 	
