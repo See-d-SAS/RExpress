@@ -71,7 +71,7 @@ Below an example in Postman, for a function returning several values.
 exports.allow_free_routes = true
 exports.allow_free_scripts = true
 
-	-> internal route
+	# internal route
 curl -X POST -H "Content-Type: multipart/form-data " -F "n=100" "http://127.0.0.1:8080/R/rnorm"
 > rnorm(n=100)
   [1] -1.13337176  0.31246821 -0.39101329 -0.01291213  0.60583716 -1.48063901
@@ -92,15 +92,16 @@ curl -X POST -H "Content-Type: multipart/form-data " -F "n=100" "http://127.0.0.
  [91] -1.40142968 -1.08684676  0.30534441  0.78448051 -0.66503028 -0.04124425
  [97]  1.05464664 -0.51600263  0.27437444 -1.23600668
 
-	-> custom route
+	# custom route
 curl -X POST -H "Content-Type: multipart/form-data " -F "text=texte" "http://127.0.0.1:8080/R/russia"
 > cyrillize(text="texte")
 [1] "тексте"
 
 curl -X POST -H "Content-Type: multipart/form-data " -F "text=t" "http://127.0.0.1:8080/R/russia"
 > Text length too short
+```
 
-
+```bash
 # Unauthorized internal routes and scripts
 
 //api.js
@@ -182,6 +183,8 @@ app.post('/R', text_parser, function (request, response) {
 ### Custom routes
 
 *POST http://ip:port/R/%function%*
+
+Map a Rfunction to a custom route and proceed to some tests before submitting it to R.
 
 ```javascript
 //main.js
