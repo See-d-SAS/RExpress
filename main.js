@@ -27,17 +27,9 @@ rexpress.allow_free_routes = true
 rexpress.router.post('/R/russia', function (request, response, next) {
 	if(!request.body){
 		response.status(400).send('No body find')
-<<<<<<< HEAD
-<<<<<<< HEAD
 	}else if(request.body['text'].length < 4){
-=======
-	else if(request.body['text'].length < 4){
->>>>>>> 9d5361fe95b0b86cb3074c1deb85ec6d3d52d5df
-=======
-	else if(request.body['text'].length < 4){
->>>>>>> 9d5361fe95b0b86cb3074c1deb85ec6d3d52d5df
 		response.status(400).send('Text length too short')
-	}else {
+	}else{
 		request.Rfunction = "cyrillize"
 		next()
 	}
