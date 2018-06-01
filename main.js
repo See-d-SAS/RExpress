@@ -21,19 +21,17 @@ if (program.nbWorkers) console.log('  - workers ' + program.nbWorkers);
 rexpress.nb_workers = program.nbWorkers
 rexpress.port = program.port
 
-rexpress.prevent_free_routes = true
+rexpress.allow_free_routes = true
 
 // Test route
 rexpress.router.post('/R/russia', function (request, response, next) {
-	if(request.body){
-		if(request.body['text'].length < 4 ){
-			response.status(400).send('Text length too short')
-		}else {
-			request.Rfunction = "cyrillize"
-			next()
-		}
-	}else {
+	if(!request.body){
 		response.status(400).send('No body find')
+	}else if(request.body['text'].length < 4){
+		response.status(400).send('Text length too short')
+	}else {
+		request.Rfunction = "cyrillize"
+		next()
 	}
 })
 
