@@ -26,7 +26,7 @@ rexpress.allow_free_routes = true
 // Test route
 rexpress.router.post('/R/russia', function (request, response, next) {
 	if(!request.body){
-		response.status(400).send('No body find')
+		response.status(400).send('No body found')
 	}else if(request.body['text'].length < 4){
 		response.status(400).send('Text length too short')
 	}else{
