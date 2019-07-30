@@ -225,7 +225,7 @@ cd RExpress
 docker build -t seed/rexpress .
 
 # run image in a container
-docker run \
+docker run -d \
 	-p 8080:80 \
 	--env NB_WORKERS="4" \
 	seed/rexpress
