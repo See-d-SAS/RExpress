@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:buster
 
 MAINTAINER theplatypus <nicolas.bloyet@see-d.fr>
 
@@ -21,10 +21,6 @@ RUN npm install -g n &&\
 # debian installs `node` as `nodejs`
 RUN update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
 
-
-# ---- install R:latest from CRAN repos
-RUN /bin/echo "deb http://cran.rstudio.com/bin/linux/debian jessie-cran3/" >> /etc/apt/sources.list
-
 RUN \
     apt-get update && \
     apt-get install -y --force-yes r-base r-base-dev
@@ -34,8 +30,12 @@ RUN mkdir /srv/RExpress
 COPY . /srv/RExpress
 WORKDIR /srv/RExpress
 
+# install system-wide R packages
+RUN \
+    echo "install.packages(\"stringi\", repos=\"https://cran.rstudio.com\")" | R --no-save
+
 RUN npm install
 WORKDIR /srv/RExpress/lib
-CMD ["sh", "-c", "node ./api.js ${NB_WORKERS}"]
+CMD ["sh", "-c", "npm start ${NB_WORKERS}"]
 
 EXPOSE 80
