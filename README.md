@@ -127,7 +127,7 @@ curl -X POST -H "Content-Type: multipart/form-data " -F "text=t" "http://127.0.0
 
 ```bash
 # clone repo
-git clone theplatypus/RExpress
+git clone https://github.com/See-d-SAS/RExpress
 cd RExpress
 
 npm install
@@ -218,19 +218,19 @@ You can use the Dockerfile to build a container with necessaries dependencies.
 
 ```bash
 # clone repo
-git clone theplatypus/RExpress
+git clone https://github.com/See-d-SAS/RExpress
 cd RExpress
 
 # build image
-docker build -t seed/RExpress .
+docker build -t seed/rexpress .
 
 # run image in a container
 docker run \
 	-p 8080:80 \
 	--env NB_WORKERS="4" \
-	seed/RExpress
+	seed/rexpress
 
-# access RExpress at 192.168.99.100:8080 (your docker bridge0 addr)
+# access RExpress at 172.17.0.1:8080 (your docker bridge0 addr ; docker network inspect bridge to know more)
 
 ```
 ## Issues and roadmap
